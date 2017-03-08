@@ -20,6 +20,7 @@ public:
     std::string getPath() const;
     void setFlag(bool flag);
     bool getFlag() const; 
+    std::string toString() const;
 };
 
 #endif

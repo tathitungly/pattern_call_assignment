@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include "pattern.h"
+#include "patternfactory.h"
 
 using namespace std;
 
@@ -22,8 +22,25 @@ int main( int argc, const char* argv[] )
         cout << "Your choice? ";
         getline(cin, inputStr);
         int choice = atoi(inputStr.c_str());
-        if (choice == 7) {
+        switch (choice) {
+        case 1:
+            cout << endl << endl << "Please enter pattern data:"
+                 << endl << "(e.g: 42;myPattern;src/patterns/Functional.pat;false )" << endl;
+            cout << "Pattern data: ";
+            getline(cin, inputStr);
+            try {
+                Pattern newPattern = PatternFactory::stringToPattern(inputStr);
+                cout << newPattern.toString() << endl;
+            } catch (const char* msg) {
+                cout << msg << endl;
+            }
             break;
+        case 2: break;
+        case 3: break;
+        case 4: break;
+        case 5: break;
+        case 6: break;
+        case 7: cout << endl << "Bye!!" << endl; return 0;
         }
         cout << endl << endl;
     }

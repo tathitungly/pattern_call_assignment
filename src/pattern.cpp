@@ -1,4 +1,5 @@
 #include "pattern.h"
+#include <sstream>
 
 Pattern::Pattern()
 {
@@ -55,3 +56,14 @@ bool Pattern::getFlag() const
 {
     return this->flag;
 } 
+
+std::string Pattern::toString() const
+{
+    std::stringstream strStream;
+    strStream << this->id
+              << ";" << this->name
+              << ";" << this->path
+              << ";" << this->flag;
+    std::string str = strStream.str();
+    return str;
+}
