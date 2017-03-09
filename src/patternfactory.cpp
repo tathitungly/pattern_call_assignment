@@ -9,7 +9,7 @@ PatternFactory::PatternFactory()
     // Do nothing
 }
 
-Pattern PatternFactory::stringToPattern(const std::string str)
+Pattern* PatternFactory::stringToPattern(const std::string str)
 {
     // Parse input string to vector
     std::vector<std::string> stringVector;
@@ -28,16 +28,16 @@ Pattern PatternFactory::stringToPattern(const std::string str)
             std::cout << "WARN: redundant parameter will be ignored." << std::endl;
         }
 
-        Pattern result;
-        result.setId(std::atoi(stringVector[0].c_str()));
-        std::cout << "Reading ID: " << result.getId() << std::endl;
-        result.setName(stringVector[1]);
-        std::cout << "Reading Name: " << result.getName() << std::endl;
-        result.setPath(stringVector[2]);
-        std::cout << "Reading Path: " << result.getPath() << std::endl;
-        result.setFlag(stringVector[3] != "0");
-        std::cout << "Reading Flag: " << result.getFlag() << std::endl;
+        Pattern *result = new Pattern();
+        result->setId(std::atoi(stringVector[0].c_str()));
+        std::cout << "Reading ID: " << result->getId() << std::endl;
+        result->setName(stringVector[1]);
+        std::cout << "Reading Name: " << result->getName() << std::endl;
+        result->setPath(stringVector[2]);
+        std::cout << "Reading Path: " << result->getPath() << std::endl;
+        result->setFlag(stringVector[3] != "0");
+        std::cout << "Reading Flag: " << result->getFlag() << std::endl;
         return result;
     }
-    return Pattern();
+    return NULL;
 }

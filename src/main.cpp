@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include "patternfactory.h"
+#include "patterndatabase.h"
 
 using namespace std;
 
@@ -9,11 +10,12 @@ int main( int argc, const char* argv[] )
 {
     bool isContinue = true;
     string inputStr = "";
+    PatternDatabase patternDatabase;
     while (isContinue) {
         cout << "Hello! What would you like to do?" << endl
                   << endl
                   << "1. Enter a new pattern call" << endl
-                  << "2. Delete a pattern call" << endl
+                  << "2. Get a pattern call" << endl
                   << "3. List all pattern calls with a specified name" << endl
                   << "4. List all pattern calls with a specified path" << endl
                   << "5. List all pattern calls which are skipped" << endl
@@ -29,13 +31,24 @@ int main( int argc, const char* argv[] )
             cout << "Pattern data: ";
             getline(cin, inputStr);
             try {
-                Pattern newPattern = PatternFactory::stringToPattern(inputStr);
-                cout << newPattern.toString() << endl;
+                Pattern *newPattern = PatternFactory::stringToPattern(inputStr);
+                patternDatabase.addPattern(newPattern);
             } catch (const char* msg) {
                 cout << msg << endl;
             }
             break;
-        case 2: break;
+        case 2: {
+            cout << endl << endl << "Please enter pattern ID: ";
+            getline(cin, inputStr);
+            choice = atoi(inputStr.c_str());
+            Pattern *pattern = patternDatabase.getPatternById(choice);
+            if (pattern != NULL) {
+                cout << "Pattern data:" << endl << pattern->toString();
+            } else {
+                cout << "Cannot find pattern with input ID." << endl;
+            }
+        }
+            break;
         case 3: break;
         case 4: break;
         case 5: break;
