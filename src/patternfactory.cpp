@@ -22,7 +22,7 @@ Pattern* PatternFactory::stringToPattern(const std::string str)
     // Validate input string
     int numOfParams = stringVector.size();
     if (numOfParams < 4) {
-        throw "ERROR: lack of parameter to create a pattern.";
+        std::cout << "ERROR: lack of parameter to create a pattern.";
     } else {
         if (numOfParams > 4) {
             std::cout << "WARN: redundant parameter will be ignored." << std::endl;
