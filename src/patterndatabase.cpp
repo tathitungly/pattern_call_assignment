@@ -69,7 +69,7 @@ std::vector<Pattern*> PatternDatabase::getPatternsByName(std::string name)
 {
     Pattern sample;
     sample.setName(name);
-    return filterAsCondition(&PatternDatabase::isSamePath, &sample);
+    return filterAsCondition(&PatternDatabase::isSameName, &sample);
 };
 
 std::vector<Pattern*> PatternDatabase::getPatternsByPath(std::string path)
